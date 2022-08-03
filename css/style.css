@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+
+
+.container {
+    display: flex;
+}
+
+
+.calculator-body {
+    border: 5px black solid;
+    padding: 5px;
+}
+
+
+.operations {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.calculator-display {
+    border: 1px gray solid;
+    text-align: right;
+}
+
+
+.calculator-input {
+    display: flex;
+}
