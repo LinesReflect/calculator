@@ -1,16 +1,52 @@
+html {
+    height: 100%;
+}
+
+
 body {
     margin: 0;
+    min-height: 100%;
+    background-color: #7a7a7a;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+
+button {
+    width: 25px;
+}
+
+
+.header,
+.footer {
+    flex: 1;
+    width: 100%;
+    text-align: center; background-color: aliceblue;
 }
 
 
 .container {
-    display: flex;
+    flex: 1;
 }
 
 
 .calculator-body {
     border: 5px black solid;
     padding: 5px;
+}
+
+
+.small-display {
+    font-size: 10px;
+    height: 10px;
+}
+
+
+.display {
+    height: 10px;
 }
 
 
@@ -21,11 +57,48 @@ body {
 
 
 .calculator-display {
-    border: 1px gray solid;
+    border: 1px red solid;
+    padding: 0 5px 0;
     text-align: right;
 }
 
 
 .calculator-input {
     display: flex;
+    gap: 4px;
+}
+
+
+.addition,
+.subtraction,
+.multiplication,
+.division,
+.clear,
+.on-off {
+    width: 25px;
+}
+
+
+.equals {
+    width: 54px;
+}
+
+
+.clear {
+    padding: 0;
+}
+
+
+.delete {
+    padding: 0;
+}
+
+
+.zero { 
+    align-self: center;
+}
+
+
+.numbers-zero {
+    text-align: end;
 }
