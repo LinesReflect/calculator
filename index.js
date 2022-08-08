@@ -61,16 +61,21 @@ function getNumbers(button) {
         smallDisplay.textContent = firstNumber;
     }else {
         secondNumber += num;
+        smallDisplay.textContent += num;
     };
-    smallDisplay.textContent += secondNumber;
+
     return;
 };
 
 
 function showOperator(opp) {
-    opperation = opp;
-    display.textContent += " " + opp + " ";
-    smallDisplay.textContent = display.textContent;
+    if (isOperator === false) {
+        opperation = opp;
+        display.textContent += " " + opp + " ";
+        smallDisplay.textContent = display.textContent;
+    }else {
+        return;
+    };
     isOperator = true;
 };
 
@@ -95,6 +100,7 @@ function clearCalculator() {
     firstNumber = "";
     secondNumber = "";
     opperation = "";
+    isOperator = false;
     display.textContent = "";
 };
 
@@ -147,4 +153,5 @@ function operate(operator, a, b) {
     secondNumber = "";
     opperation = "";
     display.textContent = firstNumber;
+    isOperator = false;
 };
