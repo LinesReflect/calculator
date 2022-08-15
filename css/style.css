@@ -6,7 +6,7 @@ html {
 body {
     margin: 0;
     min-height: 100%;
-    background-color: #7a7a7a;
+    background-color: #000;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -16,15 +16,17 @@ body {
 
 
 button {
-    width: 25px;
+    height: 125px;
+    width: 125px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #faf0ca;
 }
 
 
 .header,
 .footer {
     flex: 1;
-    width: 100%;
-    text-align: center; background-color: aliceblue;
 }
 
 
@@ -34,38 +36,55 @@ button {
 
 
 .calculator-body {
-    border: 5px black solid;
+    height: 650px;
+    width: 650px;
+    border: 5px #bdbdbd70 solid;
+    border-radius: 5%;
+    margin: 0;
     padding: 5px;
+    background-color: #0c365d;
 }
 
 
 .small-display {
-    font-size: 10px;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 15px;
     height: 10px;
 }
 
 
 .display {
+    padding: 0;
+    margin: 0;
     height: 10px;
+    font-size: 40px;
 }
 
 
 .operations {
     display: flex;
     flex-direction: column;
+    color: #849698;
 }
 
 
 .calculator-display {
-    border: 1px red solid;
+    border: 1px #000 solid;
+    background-color: #84969880;
+    margin: 10px 15px;
     padding: 0 5px 0;
     text-align: right;
+    height: 100px;
 }
 
 
 .calculator-input {
     display: flex;
     gap: 4px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
 }
 
 
@@ -75,21 +94,25 @@ button {
 .division,
 .clear,
 .on-off {
-    width: 25px;
+    padding: 0;
+    background-color: #bdbdbd;
 }
 
 
 .equals {
-    width: 54px;
+    background-color: #f4d35e;
+    width: 254px;
 }
 
 
 .clear {
+    background-color: #f95738;
     padding: 0;
 }
 
 
 .delete {
+    background-color: #ee964b;
     padding: 0;
 }
 
@@ -101,4 +124,34 @@ button {
 
 .numbers-zero {
     text-align: end;
+}
+
+
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 0 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #0c365d10;
+    color: #faf0ca;
+}
+
+
+a {
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    text-decoration: none;
+    align-self: center;
+}
+
+
+.github {
+    padding: 0;
+    margin: 0;
+    height: 32px;
+    width: 32px;
 }
