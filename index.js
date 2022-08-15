@@ -54,23 +54,28 @@ clear.addEventListener("click", clearCalculator);
 
 
 function getNumbers(button) {
-    if (!(display.textContent === "N/A")) {
-        let num;
-        num = button;
-        display.textContent += num;
-        if (isOperator === false) {
-            firstNumber = display.textContent;
-            smallDisplay.textContent = firstNumber;
-            isFirstNumber = true;
+    if (display.textContent.length < 30) {
+        if (!(display.textContent === "N/A" || display.textContent === "Number too large!!!") ) {
+            let num;
+            num = button;
+            display.textContent += num;
+            if (isOperator === false) {
+                firstNumber = display.textContent;
+                smallDisplay.textContent = firstNumber;
+                isFirstNumber = true;
+            }else {
+                secondNumber += num;
+                smallDisplay.textContent += num;
+            };
         }else {
-            secondNumber += num;
-            smallDisplay.textContent += num;
+            num = button;
+            firstNumber = num;
+            display.textContent = firstNumber;
+            console.log(num)
         };
     }else {
-        num = button;
-        firstNumber = num;
-        display.textContent = firstNumber;
-        console.log(num)
+        display.textContent = "Number too large!!!";
+        smallDisplay.textContent = "Does not fit";
     };
 
     return;
@@ -86,19 +91,6 @@ function showOperator(opp) {
         return;
     };
     isOperator = true;
-};
-
-
-function getEquals() {
-    if (isFirstNumber === true && isOperator === false) {
-        answer = firstNumber;
-        display.textContent = answer;
-        smallDisplay.textContent = answer;
-    }else if (firstNumber != "") {
-        let firstNumberInt = parseFloat(firstNumber);
-        let secondNumberInt = parseFloat(secondNumber);
-        operate(opperation, firstNumberInt, secondNumberInt);
-    }
 };
 
 
@@ -133,6 +125,19 @@ function clearCalculator() {
     isFirstNumber = "";
     display.textContent = "";
     smallDisplay.textContent = "";
+};
+
+
+function getEquals() {
+    if (isFirstNumber === true && isOperator === false) {
+        answer = firstNumber;
+        display.textContent = answer;
+        smallDisplay.textContent = answer;
+    }else if (firstNumber != "") {
+        let firstNumberInt = parseFloat(firstNumber);
+        let secondNumberInt = parseFloat(secondNumber);
+        operate(opperation, firstNumberInt, secondNumberInt);
+    }
 };
 
 
