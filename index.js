@@ -26,6 +26,7 @@ let num = "";
 let firstNumber = "";
 let secondNumber = "";
 let opperation = "";
+let isFirstNumber = false;
 
 
 oneButton.addEventListener("click", function () {getNumbers(oneButton.value)});
@@ -53,15 +54,23 @@ clear.addEventListener("click", clearCalculator);
 
 
 function getNumbers(button) {
-    let num;
-    num = button;
-    display.textContent += num;
-    if (isOperator === false) {
-        firstNumber = display.textContent;
-        smallDisplay.textContent = firstNumber;
+    if (!(display.textContent === "N/A")) {
+        let num;
+        num = button;
+        display.textContent += num;
+        if (isOperator === false) {
+            firstNumber = display.textContent;
+            smallDisplay.textContent = firstNumber;
+            isFirstNumber = true;
+        }else {
+            secondNumber += num;
+            smallDisplay.textContent += num;
+        };
     }else {
-        secondNumber += num;
-        smallDisplay.textContent += num;
+        num = button;
+        firstNumber = num;
+        display.textContent = firstNumber;
+        console.log(num)
     };
 
     return;
@@ -69,7 +78,7 @@ function getNumbers(button) {
 
 
 function showOperator(opp) {
-    if (isOperator === false) {
+    if (isOperator === false && isFirstNumber === true) {
         opperation = opp;
         display.textContent += " " + opp + " ";
         smallDisplay.textContent = display.textContent;
@@ -81,18 +90,38 @@ function showOperator(opp) {
 
 
 function getEquals() {
-    if (firstNumber != "") {
-        let firstNumberInt = parseInt(firstNumber);
-        let secondNumberInt = parseInt(secondNumber);
+    if (isFirstNumber === true && isOperator === false) {
+        answer = firstNumber;
+        display.textContent = answer;
+        smallDisplay.textContent = answer;
+    }else if (firstNumber != "") {
+        let firstNumberInt = parseFloat(firstNumber);
+        let secondNumberInt = parseFloat(secondNumber);
         operate(opperation, firstNumberInt, secondNumberInt);
-    }else {
-        return;
     }
 };
 
 
 function deleteChar() {
-    console.log("delete");
+    if (display.textContent === "N/A") {
+        clearCalculator()
+    }else if ((display.textContent.length - 1) > 0) {
+        if (secondNumber === "" && isOperator === false) {
+            firstNumber = toString(firstNumber);
+            firstNumber = firstNumber.toString(firstNumber.slice(0, -1));
+        }else if (secondNumber === "" && isOperator === true) {
+            display.textContent = display.textContent.slice(0, - 2);
+            smallDisplay.textContent = smallDisplay.textContent.slice(0, - 2);
+            opperation = "";
+            isOperator = false;
+        }else if (isOperator === true) {
+            secondNumber = secondNumber.slice(0, -1)
+        };
+        display.textContent = display.textContent.slice(0, - 1);
+        smallDisplay.textContent = smallDisplay.textContent.slice(0, - 1);     
+    }else{
+        clearCalculator();
+    };
 };
 
 
@@ -101,7 +130,9 @@ function clearCalculator() {
     secondNumber = "";
     opperation = "";
     isOperator = false;
+    isFirstNumber = "";
     display.textContent = "";
+    smallDisplay.textContent = "";
 };
 
 
@@ -122,7 +153,7 @@ function multiply(a,b) {
 
 function divide(a,b) {
     if (b === 0) {
-        return "N/A";
+        return undefinedAnswer();
     }else {
         return a / b;
     };
@@ -133,7 +164,7 @@ function operate(operator, a, b) {
     let answer;
     switch (operator){
         case "+":
-            answer = add(a,b)
+            answer = add(a,b);
             break;
         case "-":
             answer = subtract(a,b);
@@ -142,10 +173,7 @@ function operate(operator, a, b) {
             answer = multiply(a,b);
             break;
         case "÷":
-            answer = divide(a,b)
-            if (b === 0) {
-                clearCalculator();
-            };
+            answer = divide(a,b);
             break;
     };
     smallDisplay.textContent += " = " + answer;
@@ -153,5 +181,14 @@ function operate(operator, a, b) {
     secondNumber = "";
     opperation = "";
     display.textContent = firstNumber;
+    isFirstNumber = true;
     isOperator = false;
+};
+
+
+function undefinedAnswer() {
+    display.textContent = "N/A";
+    firstNumber = "";
+    secondNumber = "";
+    return display.textContent;
 };
